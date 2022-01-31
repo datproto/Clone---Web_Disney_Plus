@@ -3,6 +3,10 @@
   src: url('assets/fonts/Metropolis-Regular.otf');
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   scroll-behavior: smooth
 }

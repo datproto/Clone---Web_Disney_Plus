@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { auth, provider } from "../firebase";
 import {
   selectUserName,
@@ -15,12 +15,17 @@ function Header(props) {
   const navigate = useNavigate();
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
+  const location = useLocation();
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-        navigate("/home");
+        if (location.pathname === "/") {
+          navigate("/home");
+        }
+      } else {
+        navigate("/");
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,7 +73,7 @@ function Header(props) {
       ) : (
         <>
           <NavMenu>
-            <a href="/">
+            <a href="/home">
               <img src="/images/home-icon.svg" alt="HOME" />
               <span>HOME</span>
             </a>
@@ -76,19 +81,19 @@ function Header(props) {
               <img src="/images/search-icon.svg" alt="SEARCH" />
               <span>SEARCH</span>
             </a>
-            <a href="/">
+            <a href="/watchlist">
               <img src="/images/watchlist-icon.svg" alt="WATCHLIST" />
               <span>WATCHLIST</span>
             </a>
-            <a href="/">
+            <a href="/originals">
               <img src="/images/original-icon.svg" alt="ORIGINALS" />
               <span>ORIGINALS</span>
             </a>
-            <a href="/">
+            <a href="/movies">
               <img src="/images/movie-icon.svg" alt="MOVIES" />
               <span>MOVIES</span>
             </a>
-            <a href="/">
+            <a href="/series">
               <img src="/images/series-icon.svg" alt="SERIES" />
               <span>SERIES</span>
             </a>
