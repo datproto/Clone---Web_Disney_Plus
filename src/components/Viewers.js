@@ -29,8 +29,8 @@ const Viewers = (props) => {
       {viewers.map((v, index) => (
         <Wrap key={index}>
           <img src={`/images/viewers-${v.img}.png`} alt={v.img} />
-          <video autoPlay={true} loop={true} playsInLine={true}>
-            <source src={`videos/${v.vid}.mp4`} type="" />
+          <video autoPlay={true} loop={true} playsInline={true}>
+            <source src={`/videos/${v.vid}.mp4`} type="video/mp4" />
           </video>
         </Wrap>
       ))}
@@ -58,7 +58,7 @@ const Wrap = styled.div`
   cursor: pointer;
   overflow: hidden;
   position: relative;
-  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
   border: 3px solid rgba(249, 249, 249, 0.1);
 
   img {
